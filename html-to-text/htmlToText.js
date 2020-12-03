@@ -13,3 +13,14 @@ const getBodyText = () => {
     return bodyText;
 };
 
+// Send text to backend
+// TODO: Create function to send text to backend
+
+// Receive updated text
+// TODO: Create function to receive updated text
+
+// Replace body text
+const replaceBodyText = () => {
+    const newBodyText = "PLACEHOLDER TEXT";
+    document.body.innerText = newBodyText;
+};
