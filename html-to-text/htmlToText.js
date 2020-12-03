@@ -14,10 +14,12 @@ const getBodyText = () => {
 };
 
 // Send text to backend
-// TODO: Create function to send text to backend
+const sendToBackendAndWaitForResponse = () => {
 
-// Receive updated text
-// TODO: Create function to receive updated text
+     //TODO: Handle posting data here
+
+
+};
 
 // Replace body text
 const replaceBodyText = () => {
