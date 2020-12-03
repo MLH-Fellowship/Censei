@@ -8,8 +8,14 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/ping', methods=['GET'])
 @cross_origin()
-def parseFile():
+def pong():
     return 'pong'
+
+@app.route('/censorText', methods=['POST'])
+@cross_origin()
+def censorText():
+    print(request.json)
+    return request.json
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
