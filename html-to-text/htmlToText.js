@@ -23,6 +23,6 @@ const sendToBackendAndWaitForResponse = () => {
 
 // Replace body text
 const replaceBodyText = () => {
-    const newBodyText = "PLACEHOLDER TEXT";
+    const newBodyText = "PLACEHOLDER TEXT"; // TODO: Change to response from sendToBackendAndWaitForResponse function.
     document.body.innerText = newBodyText;
 };
