@@ -8,7 +8,6 @@ import random
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-profanity.load_censor_words()
 
 emojis = "🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🍈 🍒 🍑 🍍 🥝 🍅 🍆 🥑 🥒 🌶 🌽 🥕 🥔 🍠 🥐 🍞 🥖 🧀 🥚 🍳 🥞 🥓 🍗 🍖 🌭 🍔 🍟 🍕 🥙 🌮 🌯 🥗 🥘 🍝 🍜 🍲 🍛 🍣 🍱 🍤 🍙 🍚 🍘 🍥 🍢 🍡 🍧 🍨 🍦 🍰 🎂 🍮 🍭 🍬 🍫 🍿 🍩 🍪 🌰 🥜 🍯 🥛 🍼 🍵 🍶 🍺 🍻 🥂 🍷 🥃 🍸 🍹 🍾".split(' ')
 
@@ -20,7 +19,11 @@ def pong():
 @app.route('/censorText', methods=['POST'])
 @cross_origin()
 def censorText():
-    text = request.json['text']
+    text = request.json.get('text', '')
+    whitelist = request.json.get('white_list', [])
+    censorlist = request.json.get('censor_list', [])
+    profanity.load_censor_words(whitelist_words=whitelist)
+    profanity.add_censor_words(censorlist)
     words = text.split(' ')
     censored_text = ''
     for word in words:
