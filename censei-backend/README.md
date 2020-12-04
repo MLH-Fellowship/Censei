@@ -2,7 +2,7 @@
 
 > Flask Server to process text and return censored versions with emojis
 
-### Getting Started
+## Getting Started
 
 ```sh
 
@@ -24,3 +24,27 @@ export FLASK_DEBUG=1 # optional
 flask run
 
 ```
+
+## Endpoints 
+
+- ### `POST /censorText`
+    - Request Parameters
+        - text : The text to be censored
+    - Sample Request
+        ```HTTP
+        POST /censorText HTTP/1.1
+        Host: localhost:5000
+        Content-Type: application/json
+
+        {
+            "text": "You suck!"
+        }
+        ```
+    - Response
+        - censored_text: The censored versions of the text corpus sent in the request
+    - Sample Response
+        ```json
+        {
+            "censored_text": " You 🎂🎂🎂🎂!"
+        }
+        ```
