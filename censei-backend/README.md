@@ -30,6 +30,8 @@ flask run
 - ### `POST /censorText`
     - Request Parameters
         - text : The text to be censored
+        - censor_list: list of words to be added to the list of bad words (MUST all be lowercase)
+        - white_list: list of bad words to be allowed for use (MUST all be lowercase)
     - Sample Request
         ```HTTP
         POST /censorText HTTP/1.1
@@ -37,7 +39,9 @@ flask run
         Content-Type: application/json
 
         {
-            "text": "You suck!"
+            "text": "You suck so much stupid!",
+            "censor_list": ["much"],
+            "white_list": ["suck"]
         }
         ```
     - Response
@@ -45,6 +49,6 @@ flask run
     - Sample Response
         ```json
         {
-            "censored_text": " You 🎂🎂🎂🎂!"
+            "censored_text": " You suck so 🌽🌽🌽🌽 🍵🍵🍵🍵!"
         }
         ```
