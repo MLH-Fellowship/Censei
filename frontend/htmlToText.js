@@ -12,11 +12,6 @@ const sendToBackendAndWaitForResponse = () => {
     let newBodyText = '';
     bodyText = getBodyText();
 
-    // fetch('http://localhost:8080/ping', {
-    // })
-    // .then(response => response.text())
-    // .then(txt => console.log(txt));
-
     return fetch('http://localhost:8080/censorText', {
         method: 'POST', 
         headers: {
