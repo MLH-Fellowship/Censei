@@ -9,7 +9,7 @@ Steps:
 
 // Get text from body
 const getBodyText = () => {
-    const bodyText = document.body.innerText;
+    const bodyText = document.body.innerHTML;
     return bodyText;
 };
 
@@ -20,22 +20,43 @@ const sendToBackendAndWaitForResponse = () => {
     let newBodyText = '';
     bodyText = getBodyText();
 
-    fetch('http://127.0.0.1:8080/post', {method: 'POST', body:bodyText})
+    // fetch('http://localhost:8080/ping', {
+    // })
+    // .then(response => response.text())
+    // .then(txt => console.log(txt));
+
+    return fetch('http://localhost:8080/censorText', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({text: bodyText})
+    })
     .then((response) => {
         // Resulting clean text is collected here
         console.log('Response from backend = ', response)
-        newBodyText = response;
+        return response.json()
+    })
+    .then(json => {
+        console.log(json.censored_text)
+        newBodyText = json.censored_text;
+        return newBodyText;
     })
     .catch((err) => {
         console.log('Error: ', err);
+        return;
     });
-
-    return newBodyText;
     
 };
 
 // Replace body text
 const replaceBodyText = () => {
-    const newBodyText = sendToBackendAndWaitForResponse();
-    document.body.innerText = newBodyText;
+    sendToBackendAndWaitForResponse()
+    .then(censoredText => {
+        document.body.innerHTML = censoredText;
+    })
+    
 };
+
+let censorButton = document.getElementById('censorButton');
+censorButton.addEventListener('click', replaceBodyText);
