@@ -1,11 +1,3 @@
-/* 
-Steps:
-    1) Get all text from body
-    2) send resulting text to backend
-    3) Receive the updated text from backend
-    4) Replace body text with the new text
-*/
-
 
 // Get text from body
 const getBodyText = () => {
@@ -13,7 +5,7 @@ const getBodyText = () => {
     return bodyText;
 };
 
-// Send text to backend
+// Send text to backend and get censored text
 const sendToBackendAndWaitForResponse = () => {
 
     // Post body text to backend
@@ -34,7 +26,6 @@ const sendToBackendAndWaitForResponse = () => {
     })
     .then((response) => {
         // Resulting clean text is collected here
-        console.log('Response from backend = ', response)
         return response.json()
     })
     .then(json => {
