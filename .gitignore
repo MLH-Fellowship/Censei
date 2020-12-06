@@ -4,3 +4,4 @@ venv/
 creds/
 *.pyc
 .vscode
+.DS_Store

@@ -12,8 +12,8 @@ const sendToBackendAndWaitForResponse = () => {
     let newBodyText = '';
     bodyText = getBodyText();
 
-    return fetch('http://localhost:8080/censorText', {
-        method: 'POST', 
+    return fetch('https://censei-backend-twfbr3tmoq-uc.a.run.app/censorText', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
