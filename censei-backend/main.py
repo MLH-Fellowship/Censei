@@ -22,10 +22,9 @@ def pong():
 @app.route('/censorText', methods=['POST'])
 @cross_origin()
 def censorText():
-
-    text = request.args.get('text', '')
-    whitelist = request.args.get('white_list', [])
-    censorlist = request.args.get('censor_list', [])
+    text = request.json.get('text', '')
+    whitelist = request.json.get('white_list', [])
+    censorlist = request.json.get('censor_list', [])
     profanity.load_censor_words(whitelist_words=whitelist)
     profanity.add_censor_words(censorlist)
     words = text.split(' ')

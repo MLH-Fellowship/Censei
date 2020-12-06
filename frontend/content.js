@@ -1,9 +1,8 @@
-
 // Get text from body
 const getBodyText = () => {
     const bodyText = document.body.innerHTML;
+    console.log("getBodyText() called", bodyText);
     return bodyText;
-
 };
 
 // Send text to backend and get censored text
@@ -13,26 +12,25 @@ const sendToBackendAndWaitForResponse = () => {
     let newBodyText = '';
     bodyText = getBodyText();
 
-    return fetch('http://127.0.0.1:5000/censorText', {
-        method: 'POST',
+    return fetch('http://localhost:8080/censorText', {
+        method: 'POST', 
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({text: bodyText}),
-        mode: 'no-cors'
+        body: JSON.stringify({text: bodyText})
     })
     .then((response) => {
+        console.log("Fetch success!", response)
         // Resulting clean text is collected here
-        return response.json();
+        return response.json()
     })
     .then(json => {
-        console.log(json.censored_text)
+        console.log("JSON From response", json)
         newBodyText = json.censored_text;
         return newBodyText;
     })
     .catch((err) => {
         console.log('Error: ', err);
-        return;
     });
 
 };
@@ -43,6 +41,7 @@ const replaceBodyText = () => {
     .then(censoredText => {
         document.body.innerHTML = censoredText;
     })
+    .catch(err => console.log("Error", err))
 
 };
 
