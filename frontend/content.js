@@ -3,6 +3,7 @@
 const getBodyText = () => {
     const bodyText = document.body.innerHTML;
     return bodyText;
+
 };
 
 // Send text to backend and get censored text
@@ -12,16 +13,17 @@ const sendToBackendAndWaitForResponse = () => {
     let newBodyText = '';
     bodyText = getBodyText();
 
-    return fetch('http://localhost:8080/censorText', {
-        method: 'POST', 
+    return fetch('http://127.0.0.1:5000/censorText', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({text: bodyText})
+        body: JSON.stringify({text: bodyText}),
+        mode: 'no-cors'
     })
     .then((response) => {
         // Resulting clean text is collected here
-        return response.json()
+        return response.json();
     })
     .then(json => {
         console.log(json.censored_text)
@@ -32,7 +34,7 @@ const sendToBackendAndWaitForResponse = () => {
         console.log('Error: ', err);
         return;
     });
-    
+
 };
 
 // Replace body text
@@ -41,8 +43,7 @@ const replaceBodyText = () => {
     .then(censoredText => {
         document.body.innerHTML = censoredText;
     })
-    
+
 };
 
-let censorButton = document.getElementById('censorButton');
-censorButton.addEventListener('click', replaceBodyText);
+replaceBodyText();

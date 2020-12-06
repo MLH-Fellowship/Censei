@@ -22,5 +22,13 @@
       "48": "images/get_started48.png",
       "128": "images/get_started128.png"
     },
-    "manifest_version": 2
+
+    "content_scripts": [
+    {
+    "matches": ["*://*/*"],
+    "js": ["content.js"],
+    "run_at":"document_end"
+
+  }],
+  "manifest_version": 2
 }
