@@ -3,14 +3,14 @@ const getCounter = () => {
 }
 
 const incrementCounter = () => {
-    console.log("Increment Counter");
-    if (localStorage.wordsCounter) {
-        console.log('WC', localStorage.wordsCounter)
-        const newValue = parseInt(localStorage.wordsCounter) + 1;
-        localStorage.wordsCounter = newValue.toString();
+    chrome.storage.sync.get(["wordsCensored"], function({wordsCensored}){
+    if (wordsCensored) {
+        let newValue = wordsCensored + 1;
+        chrome.storage.sync.set({"wordsCensored": newValue})
     } else {
-        localStorage.wordsCounter = "0";
+        chrome.storage.sync.set({ "wordsCensored": 1 });
     }
+    });
 };
 
 // Get text from body

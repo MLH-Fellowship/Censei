@@ -1,11 +1,7 @@
-// const counterElement = document.getElementById("counter");
-// let wordsCensored = localStorage.getItem('wordsCensored');
-// alert(localStorage.wordsCounter)
-// counterElement.innerText = wordsCensored
+const counterElement = document.getElementById("counter");
 
-import { getCounter } from './content';
-
-alert(getCounter());
-
-
-
+chrome.storage.sync.get(["wordsCensored"], function({wordsCensored}){
+    if (wordsCensored) {
+        counterElement.innerText = wordsCensored
+    }
+})
