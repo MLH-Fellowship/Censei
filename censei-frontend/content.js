@@ -11,7 +11,7 @@ const sendToBackendAndWaitForResponse = () => {
     bodyTextList = getBodyText();
 
     for (let i = 0; i < bodyTextList.length; i++) {
-        let currentElementText = bodyTextList[i].innerText;
+        let currentElementText = bodyTextList[i].innerHTML;
         fetch('https://censei-backend-twfbr3tmoq-uc.a.run.app/censorText', {
             method: 'POST',
             headers: {
@@ -23,7 +23,7 @@ const sendToBackendAndWaitForResponse = () => {
             return response.json();
         })
         .then((json) => {
-            bodyTextList[i].innerText = json.censored_text;
+            bodyTextList[i].innerHTML = json.censored_text;
         })
     };
 
