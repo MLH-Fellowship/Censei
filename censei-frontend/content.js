@@ -1,47 +1,37 @@
 // Get text from body
 const getBodyText = () => {
-    const bodyText = document.body.innerHTML;
-    console.log("getBodyText() called", bodyText);
-    return bodyText;
+    const bodyTextList = document.querySelectorAll('h1, h2, h3, h4, h5, p, li, td, caption, span, a');
+    return bodyTextList;
 };
 
 // Send text to backend and get censored text
 const sendToBackendAndWaitForResponse = () => {
 
     // Post body text to backend
-    let newBodyText = '';
-    bodyText = getBodyText();
+    bodyTextList = getBodyText();
 
-    return fetch('https://censei-backend-twfbr3tmoq-uc.a.run.app/censorText', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+    for (let i = 0; i < bodyTextList.length; i++) {
+        let currentElementText = bodyTextList[i].innerText;
+        fetch('https://censei-backend-twfbr3tmoq-uc.a.run.app/censorText', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
         },
-        body: JSON.stringify({text: bodyText})
-    })
-    .then((response) => {
-        console.log("Fetch success!", response)
-        // Resulting clean text is collected here
-        return response.json()
-    })
-    .then(json => {
-        console.log("JSON From response", json)
-        newBodyText = json.censored_text;
-        return newBodyText;
-    })
-    .catch((err) => {
-        console.log('Error: ', err);
-    });
+        body: JSON.stringify({text: currentElementText})
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((json) => {
+            bodyTextList[i].innerText = json.censored_text;
+        })
+    };
 
 };
 
 // Replace body text
 const replaceBodyText = () => {
     sendToBackendAndWaitForResponse()
-    .then(censoredText => {
-        document.body.innerHTML = censoredText;
-    })
-    .catch(err => console.log("Error", err))
 
 };
 
