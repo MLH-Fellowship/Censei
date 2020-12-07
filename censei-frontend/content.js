@@ -1,3 +1,15 @@
+// Increments the number of words censored in chrome storage to display on extension popup
+const incrementCounter = () => {
+    chrome.storage.sync.get(["wordsCensored"], function({wordsCensored}){
+    if (wordsCensored) {
+        let newValue = wordsCensored + 1;
+        chrome.storage.sync.set({"wordsCensored": newValue})
+    } else {
+        chrome.storage.sync.set({ "wordsCensored": 1 });
+    }
+    });
+};
+
 // Get text from body
 const getBodyText = () => {
     const bodyTextList = document.querySelectorAll('h1, h2, h3, h4, h5, p, li, td, caption, span, a');
@@ -23,7 +35,13 @@ const sendToBackendAndWaitForResponse = () => {
             return response.json();
         })
         .then((json) => {
-            bodyTextList[i].innerHTML = json.censored_text;
+            const newText = json.censored_text.slice(1); // Removes whitespace from start
+
+            if (currentElementText !== newText) {
+                // Increment counter for wordsCensored
+                incrementCounter();
+            }
+            bodyTextList[i].innerHTML = newText;
         })
     };
 
@@ -34,5 +52,6 @@ const replaceBodyText = () => {
     sendToBackendAndWaitForResponse()
 
 };
+
 
 replaceBodyText();
