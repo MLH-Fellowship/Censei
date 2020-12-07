@@ -1,18 +1,11 @@
-let wordsCensored = localStorage.getItem('wordsCensored');
+// const counterElement = document.getElementById("counter");
+// let wordsCensored = localStorage.getItem('wordsCensored');
+// alert(localStorage.wordsCounter)
+// counterElement.innerText = wordsCensored
 
-const initFirstRun = () => {
-    if (!wordsCensored) {
-        localStorage.setItem('wordsCensored','0');
-        wordsCensored = localStorage.getItem('wordsCensored');
-    }
-};
+import { getCounter } from './content';
 
-const updateCounterElement = () => {
-    const counterElement = document.getElementById("counter");
-    counterElement.innerText = wordsCensored
-};
+alert(getCounter());
 
-initFirstRun();
-updateCounterElement();
 
 
