@@ -23,7 +23,13 @@ const sendToBackendAndWaitForResponse = () => {
             return response.json();
         })
         .then((json) => {
-            bodyTextList[i].innerHTML = json.censored_text;
+            const newText = json.censored_text.slice(1); // Removes whitespace from start
+
+            if (currentElementText !== newText) {
+                // Increment counter for wordsCensored
+                console.log("Changes Made");
+            }
+            bodyTextList[i].innerHTML = newText;
         })
     };
 
