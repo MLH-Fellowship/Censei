@@ -2,7 +2,7 @@
   "name": "Censei",
   "version": "1.0",
   "description": "Replace explicit words with emojis!",
-  "permissions": ["storage", "declarativeContent", "activeTab"],
+  "permissions": ["storage", "declarativeContent", "activeTab", "tabs", "<all_urls>"],
   "background": {
       "scripts": ["background.js"],
       "persistent": false

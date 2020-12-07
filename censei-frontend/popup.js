@@ -1,1 +1,1 @@
-let changeColor = document.getElementById('changeColor');
+alert("HIIII");

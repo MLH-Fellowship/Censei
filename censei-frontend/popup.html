@@ -2,14 +2,33 @@
 <html>
   <head>
     <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
+      .popup {
+        width: 10rem;
+        align-items: center;
+      }
+      .stats {
+        display: flex;
+      }
+      #counter {
+        padding-left: 5px;
+      }
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
       }
     </style>
   </head>
   <body>
-    <button id="changeColor"></button>
+    <div class="popup">
+      <img align="center" src="./images/icon48.png"></img>
+      <h3 align="center">Censei</h3>
+      <div class="stats">
+        <p>Words Censored: </p>
+        <p id="counter"></p>
+        <button id="test">S</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="./popup.js"></script>
   </body>
 </html>
