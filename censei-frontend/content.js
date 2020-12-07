@@ -1,7 +1,4 @@
-const getCounter = () => {
-    return localStorage.wordsCounter;
-}
-
+// Increments the number of words censored in chrome storage to display on extension popup
 const incrementCounter = () => {
     chrome.storage.sync.get(["wordsCensored"], function({wordsCensored}){
     if (wordsCensored) {
