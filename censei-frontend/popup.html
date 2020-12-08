@@ -27,33 +27,58 @@
         border-color: #18191a;
         color: #ffffff;
         border-radius: 2px;
+        user-select: none;
       }
 
-      #censorList{
+      button:hover{
+        background-color: #bbb;
+        border-color: #bbb;
+      }
+
+      #censorInput{
         display: none;
+        margin-top: 10px;
       }
 
       #incorrect{
         color: red;
         display: none;
       }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      #added{
+        display: none;
+      }
+
+    #listTitle{
+      display: none;
+    }
     </style>
   </head>
   <body>
     <div class="popup">
       <img align="center" src="./images/icon48.png"></img>
       <h3 align="center">Censei</h3>
+      <h4 align="center" id="listTitle">Censor List and Whitelist</h4>
       <div id="password">
         <input id="digit1" class="digit" value="0" type="text" maxlength="1" />
         <input id="digit2" class="digit" value="0" type="text" maxlength="1"/>
         <input id="digit3" class="digit" value="0" type="text" maxlength="1"/>
         <input id="digit4" class="digit" value="0" type="text" maxlength="1"/>
        <button id="passwordSend" type="button">Set Password</button>
-       <p id="incorrect">Your password is incorrect.</p>
       </div>
+      <p id="incorrect">Your password is incorrect.</p>
 
-      <div id="censorList">
-        <p>add censor list</p>
+        <ul id="added">
+        </ul>
+      <div id="censorInput">
+          <input type="text" id="wordInput" placeholder="Word">
+          <button id="censorButton">Censor</button>
+          <button id="whiteListButton">Whitelist</button>
       </div>
 
       <div class="stats">
