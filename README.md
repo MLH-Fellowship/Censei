@@ -67,13 +67,13 @@ Learn more about our [Code of Conduct](https://github.com/MLH-Fellowship/Censei/
 
 ## Screenshots
 
-<img width="40%" src="./assets/screenshot1.png"></img>
+<img width="40%" src="./assets/screenshot1.PNG"></img>
 <br>
-<img width="40%" src="./assets/screenshot2.png"></img>
+<img width="40%" src="./assets/screenshot2.PNG"></img>
 <br>
-<img width="40%" src="./assets/screenshot3.png"></img>
+<img width="40%" src="./assets/screenshot3.PNG"></img>
 <br>
-<img width="40%" src="./assets/screenshot4.png"></img>
+<img width="40%" src="./assets/screenshot4.PNG"></img>
 
 ## Tech Stack
 
