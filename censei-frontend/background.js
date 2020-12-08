@@ -8,3 +8,14 @@ chrome.runtime.onInstalled.addListener(function() {
     }]);
   });
 });
+
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.storage.sync.set({password: -1}, function() {
+  });
+  chrome.storage.sync.set({censorList: []}, function() {
+  });
+  chrome.storage.sync.set({whiteList: []}, function() {
+  });
+
+
+});

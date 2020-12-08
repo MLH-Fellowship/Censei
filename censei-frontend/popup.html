@@ -17,15 +17,49 @@
         margin-left: auto;
         margin-right: auto;
       }
+      .digit{
+        max-width: 10%;
+      }
+
+      button{
+        margin-top: 5px;
+        background-color:#18191a;
+        border-color: #18191a;
+        color: #ffffff;
+        border-radius: 2px;
+      }
+
+      #censorList{
+        display: none;
+      }
+
+      #incorrect{
+        color: red;
+        display: none;
+      }
     </style>
   </head>
   <body>
     <div class="popup">
       <img align="center" src="./images/icon48.png"></img>
       <h3 align="center">Censei</h3>
+      <div id="password">
+        <input id="digit1" class="digit" value="0" type="text" maxlength="1" />
+        <input id="digit2" class="digit" value="0" type="text" maxlength="1"/>
+        <input id="digit3" class="digit" value="0" type="text" maxlength="1"/>
+        <input id="digit4" class="digit" value="0" type="text" maxlength="1"/>
+       <button id="passwordSend" type="button">Set Password</button>
+       <p id="incorrect">Your password is incorrect.</p>
+      </div>
+
+      <div id="censorList">
+        <p>add censor list</p>
+      </div>
+
       <div class="stats">
         <p>Words Censored: </p>
         <p id="counter"></p>
+
       </div>
     </div>
     <script type="text/javascript" src="./popup.js"></script>
