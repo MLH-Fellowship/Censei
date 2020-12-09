@@ -33,6 +33,8 @@
 
 Censei works in the background of chrome, and gathers the entire html of the webpage that the user is on. Each individual html element is sent to the backend that checks for profanity or explicit words and replaces them with emojis. The resulting censored text is sent back to the chrome extension which then replaces it on the user's screen.
 
+Another feature of the extension is that it uses Chrome's storage to keep track of the total number of words that were censored. Therefore, the extension will continue to keep track of your total censored words even if you are on a different computer but logged in with the same google account.
+
 ## Getting Started
 
 The process of getting started is twofold, and is described below.
