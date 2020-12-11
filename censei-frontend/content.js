@@ -16,11 +16,31 @@ const getBodyText = () => {
     return bodyTextList;
 };
 
+// create white and censor lists
+let whiteList = [];
+let censorList = [];
+
+// callback to set the whiteList after received from background.js
+function setWhiteList(list){
+  whiteList = list;
+}
+
+// callback to set the censorList to received from background.js
+function setCensorList(list){
+  censorList = list;
+}
+
+
 // Send text to backend and get censored text
 const sendToBackendAndWaitForResponse = () => {
 
     // Post body text to backend
     bodyTextList = getBodyText();
+
+    chrome.runtime.sendMessage({type: "listRequest"}, function(response) {
+      setWhiteList(response.whiteList);
+      setCensorList(response.censorList);
+    });
 
     for (let i = 0; i < bodyTextList.length; i++) {
         let currentElementText = bodyTextList[i].innerHTML;
